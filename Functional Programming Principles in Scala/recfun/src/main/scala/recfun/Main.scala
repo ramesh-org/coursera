@@ -1,0 +1,50 @@
+package recfun
+
+object Main {
+  def main(args: Array[String]) {
+    println("Pascal's Triangle")
+    for (row <- 0 to 10) {
+      for (col <- 0 to row)
+        print(pascal(col, row) + " ")
+      println()
+    }
+  }
+
+  /**
+    * Exercise 1
+    */
+  def pascal(c: Int, r: Int): Int = {
+    if ((0 == c) || (c == r)) 1
+    else pascal(c - 1, r - 1) + pascal(c, r - 1)
+  }
+
+  /**
+    * Exercise 2
+    */
+  def balance(chars: List[Char]): Boolean = {
+    def balanceTailRec(chars: List[Char], noOfParentheses: Int): Boolean = {
+      if (chars.isEmpty) {
+        0 == noOfParentheses
+      } else {
+        val firstChar = chars.head
+        val n = firstChar match {
+          case '(' => noOfParentheses + 1
+          case ')' => noOfParentheses - 1
+          case _   => noOfParentheses
+        }
+        if (0 <= n) balanceTailRec(chars.tail, n)
+        else false
+      }
+    }
+    balanceTailRec(chars, 0)
+  }
+
+  /**
+    * Exercise 3
+    */
+  def countChange(money: Int, coins: List[Int]): Int = {
+    if (coins.isEmpty || money < 0) 0
+    else if (money == 0) 1
+    else countChange(money - coins.head, coins) + countChange(money, coins.tail)
+  }
+}

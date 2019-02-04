@@ -1,0 +1,14 @@
+*.metadata/
+*target/
+*.classpath
+*.project
+*.orig
+*.settings/
+*.idea/
+*.iml
+*.ensime
+*.ensime_cache/
+*.pyc
+*.db
+*.rdb
+*venv/
